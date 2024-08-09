@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://www.micodee.com/infractions-soap" 
+	xmlns:tns="http://www.micodee.com/infractions-soap" 
+	elementFormDefault="qualified">
+	<!-- Infraction -->
+	<xs:complexType name="InfractionDetail">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int"/>
+			<xs:element name="dni" type="xs:string"/>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element name="location" type="xs:string"/>
+			<xs:element name="infractionType" type="xs:string"/>
+			<xs:element name="amount" type="xs:double"/>
+			<xs:element name="state" type="xs:string"/>
+			<xs:element name="date" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InfractionShowDetail">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int"/>
+			<xs:element name="dni" type="xs:string"/>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element name="location" type="xs:string"/>
+			<xs:element name="infractionType" type="xs:string"/>
+			<xs:element name="amount" type="xs:double"/>
+			<xs:element name="state" type="xs:string"/>
+			<xs:element name="date" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InfractionStateDetail">
+		<xs:sequence>
+			<xs:element name="id" type="xs:int"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- List infraction -->
+	<xs:element name="GetAllInfractionsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="text" type="xs:string"/>
+				<xs:element name="offset" type="xs:int"/>
+				<xs:element name="limit" type="xs:int"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GetAllInfractionsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="infractionShowDetail" type="tns:InfractionShowDetail" maxOccurs="unbounded"/>
+				<xs:element name="message" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Save infraction request -->
+	<xs:element name="SaveInfractionRequest">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="infractionDetail" type="tns:InfractionDetail"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<!-- Save infraction response -->
+	<xs:element name="SaveInfractionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="message" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Update infraction request -->
+	<xs:element name="UpdateInfractionRequest">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="InfractionStateDetail" type="tns:InfractionStateDetail" minOccurs="0"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<!-- Update infraction response -->
+	<xs:element name="UpdateInfractionResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="message" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!-- Delete infraction request -->
+	<xs:element name="DeleteInfractionRequest">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="infractionDetail" type="tns:InfractionDetail"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+	<!-- Delete product response -->
+	<xs:element name="DeleteInfractionResponse">
+	    <xs:complexType>
+	        <xs:sequence>
+	            <xs:element name="message" type="xs:string"/>
+	        </xs:sequence>
+	    </xs:complexType>
+	</xs:element>
+</xs:schema>
